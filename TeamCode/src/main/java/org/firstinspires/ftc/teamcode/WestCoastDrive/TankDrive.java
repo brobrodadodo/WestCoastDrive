@@ -40,7 +40,7 @@ public class TankDrive extends LinearOpMode {
                 hardwareMap.get(DcMotor.class, "rightDrive2");
         rightMotor1 = new MotorWrapper(rightMotorDc1);
         rightMotor2 = new MotorWrapper(rightMotorDc2);
-        rightMotors = new MultiMotor(rightMotor1, rightMotor2);
+        rightMotors = new MultiMotor(rightMotor1, rightMotor2).invert();
 
         DcMotor leftMotorDc1 =
                 hardwareMap.get(DcMotor.class, "leftDrive1");

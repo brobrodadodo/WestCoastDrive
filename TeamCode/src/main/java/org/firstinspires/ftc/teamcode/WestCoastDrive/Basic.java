@@ -14,6 +14,9 @@ public class Basic extends LinearOpMode {
         DcMotor rightDrive1 = hardwareMap.dcMotor.get("rightDrive1");
         DcMotor rightDrive2 = hardwareMap.dcMotor.get("rightDrive2");
 
+        rightDrive1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftDrive1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         waitForStart();
 
         if (isStopRequested()) return;
@@ -24,6 +27,8 @@ public class Basic extends LinearOpMode {
 
             telemetry.addData("Right ", right);
             telemetry.addData("Left ", left);
+            telemetry.addData("right encoder", rightDrive1.getCurrentPosition());
+            telemetry.addData("left encoder", leftDrive1.getCurrentPosition());
             telemetry.update();
 
             leftDrive1.setPower(left);

@@ -17,8 +17,6 @@ public class Basic extends LinearOpMode {
         rightDrive1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftDrive1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        new openCvTest();
-
         waitForStart();
 
         if (isStopRequested()) return;

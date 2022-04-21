@@ -1,16 +1,17 @@
-package org.firstinspires.ftc.teamcode.WestCoastDrive;
+package org.firstinspires.ftc.teamcode.Vision;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
-import org.firstinspires.ftc.teamcode.Util.GimbalOpenCv;
-import org.firstinspires.ftc.teamcode.Util.WebcamInitialize;
 
 public abstract class GenericVision extends LinearOpMode {
 
     @Override
     public abstract void runOpMode();
 
+    WebcamInitialize webcam = new WebcamInitialize();
+
     public GimbalOpenCv.MarkerPosition getMarkerPosition() {
-        return WebcamInitialize.getCurrentPosition();
+        return webcam.getCurrentPosition();
     }
+
+
 }

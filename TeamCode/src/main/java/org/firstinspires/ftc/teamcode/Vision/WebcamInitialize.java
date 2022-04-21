@@ -1,15 +1,10 @@
-package org.firstinspires.ftc.teamcode.Util;
+package org.firstinspires.ftc.teamcode.Vision;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 public class WebcamInitialize {
 
@@ -41,6 +36,4 @@ public class WebcamInitialize {
     public GimbalOpenCv.MarkerPosition getCurrentPosition() {
         return pipeline.getPosition();
     }
-
-
 }

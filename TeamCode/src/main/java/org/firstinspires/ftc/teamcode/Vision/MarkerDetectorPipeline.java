@@ -8,9 +8,7 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-
-
-public class GimbalOpenCv extends OpenCvPipeline {
+public class MarkerDetectorPipeline extends OpenCvPipeline {
 
     public enum MarkerPosition
     {
@@ -21,7 +19,7 @@ public class GimbalOpenCv extends OpenCvPipeline {
 
     final boolean blue;
 
-    public GimbalOpenCv(boolean blue) {
+    public MarkerDetectorPipeline(boolean blue) {
         this.blue = blue;
         this.LOW_GREEN = new Scalar(blue ? 100 : 0, 100, 100);
         this.UPPER_GREEN = new Scalar(blue ? 150 : 30, 255, 255);

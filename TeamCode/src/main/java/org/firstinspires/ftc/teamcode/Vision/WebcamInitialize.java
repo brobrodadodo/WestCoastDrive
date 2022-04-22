@@ -6,15 +6,20 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 public class WebcamInitialize {
 
-    GimbalOpenCv pipeline;
+    MarkerDetectorPipeline pipeline;
 
     public void initialize(HardwareMap hardwareMap, boolean blue) {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         WebcamName webcamName = hardwareMap.get(WebcamName.class, "webcam");
         OpenCvCamera camera = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
-        pipeline = new GimbalOpenCv(blue);
+        pipeline = new MarkerDetectorPipeline(blue);
         camera.setPipeline(pipeline);
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
@@ -33,7 +38,9 @@ public class WebcamInitialize {
         });
     }
 
-    public GimbalOpenCv.MarkerPosition getCurrentPosition() {
+    public MarkerDetectorPipeline.MarkerPosition getCurrentPosition() {
         return pipeline.getPosition();
     }
+
+
 }

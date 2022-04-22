@@ -7,11 +7,18 @@ public abstract class GenericVision extends LinearOpMode {
     @Override
     public abstract void runOpMode();
 
-    WebcamInitialize webcam = new WebcamInitialize();
+    public WebcamInitialize webcam = new WebcamInitialize();
 
-    public GimbalOpenCv.MarkerPosition getMarkerPosition() {
+    public MarkerDetectorPipeline.MarkerPosition getCurrentPosition() {
         return webcam.getCurrentPosition();
     }
 
+    public void initialize() {
+        while (!isStarted() && !isStopRequested()) {
+            telemetry.addData("position", getCurrentPosition());
+            telemetry.update();
+            sleep(100);
+        }
+    }
 
 }

@@ -16,8 +16,12 @@ public class GimbalTest extends LinearOpMode {
         if (isStopRequested()) return;
 
         while(opModeIsActive()) {
-            double left = (-gamepad1.left_stick_y + 1) * 0.5;
+            double left = (gamepad1.left_stick_x + 1) * 0.5;
             double right = (gamepad1.right_stick_y + 1) * 0.5;
+
+            telemetry.addData("Yaw Pos", left);
+            telemetry.addData("Pitch Pos", right);
+            telemetry.update();
 
             yawServo.setPosition(left);
             pitchServo.setPosition(right);

@@ -24,9 +24,9 @@ repositories {
 dependencies {
     implementation project(':FtcRobotController')
 
-    implementation 'com.github.Wobblyyyy.Pathfinder2:geometry:v2.2.0'
-    implementation 'com.github.Wobblyyyy.Pathfinder2:kinematics:v2.2.0'
-    implementation 'com.github.Wobblyyyy.Pathfinder2:core:v2.2.0'
+    implementation 'com.github.Wobblyyyy.Pathfinder2:geometry:v2.4.0'
+    implementation 'com.github.Wobblyyyy.Pathfinder2:kinematics:v2.4.0'
+    implementation 'com.github.Wobblyyyy.Pathfinder2:core:v2.4.0'
 
     annotationProcessor files('lib/OpModeAnnotationProcessor.jar')
 }

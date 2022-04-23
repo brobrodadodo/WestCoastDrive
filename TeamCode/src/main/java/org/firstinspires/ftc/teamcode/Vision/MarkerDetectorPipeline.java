@@ -46,6 +46,11 @@ public class MarkerDetectorPipeline extends OpenCvPipeline {
         Core.inRange(hsvFrame, LOW_GREEN, UPPER_GREEN, greenOnly);
     }
 
+    public Mat processFrame(Mat input) {
+        return null;
+    }
+
+/*
     void getNineRegions(Mat frame) {
         int firstThird = 220;
         int secondThird = 420;
@@ -152,7 +157,7 @@ public class MarkerDetectorPipeline extends OpenCvPipeline {
         Imgproc.rectangle(input, rectA, rectB, GREEN, 5);
 
         return input;
-    }
+    } */
 
     public MarkerPosition getPosition() {
         return position;

@@ -4,23 +4,47 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.Vision.GimbalMotion;
+
+import me.wobblyyyy.pathfinder2.Pathfinder;
+import me.wobblyyyy.pathfinder2.utils.Toggle;
+
 @TeleOp (name = "GimbalTest", group = "Test")
 public class GimbalTest extends LinearOpMode {
+    private static GimbalMotion gimbal;
+    private Toggle stickControl;
+    private double targetYaw;
+    private double targetPitch;
+    private final Pathfinder pathfinder = Pathfinder.newSimulatedPathfinder(-0.05);
+
     @Override
     public void runOpMode() {
-        Servo yawServo = hardwareMap.servo.get("webcamYaw");
-        Servo pitchServo = hardwareMap.servo.get("webcamPitch");
+        gimbal = new GimbalMotion(hardwareMap.servo.get("webcamYaw"), hardwareMap.servo.get("webcamPitch"));
+        gimbal.resetPosition(); // sets pitch and yaw to 0.5 (forward facing)
+        stickControl = new Toggle(true);
+        targetYaw = gimbal.getYawZero();
+        targetPitch = gimbal.getPitchZero();
 
         waitForStart();
 
         if (isStopRequested()) return;
 
-        while(opModeIsActive()) {
-            double left = (-gamepad1.left_stick_y + 1) * 0.5;
-            double right = (gamepad1.right_stick_y + 1) * 0.5;
+        pathfinder
+                .getListenerManager()
+                .bindButtonPress(() -> gamepad1.a, stickControl::toggle);
 
-            yawServo.setPosition(left);
-            pitchServo.setPosition(right);
+        while(opModeIsActive()) {
+            pathfinder.tick();
+
+            if (stickControl.getState()) {
+                double left = (gamepad1.left_stick_y + 1) * 0.5; // yaw - left joystick
+                double right = (gamepad1.right_stick_y + 1) * 0.5; // pitch - right joystick
+                gimbal.setPosition(left, right);
+
+            } else {
+                gimbal.setPosition(targetYaw, targetPitch);
+
+            }
         }
     }
 }

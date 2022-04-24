@@ -92,7 +92,12 @@ public class CameraPipeline extends OpenCvPipeline {
             return false;
         } else {
             double elapsedMs = currentMs - lastDetectionMs;
-            return elapsedMs > 3_000;
+            if (elapsedMs > 1_000) {
+                lastBallCenter = cameraCenter;
+                ballCenter = cameraCenter;
+                return true;
+            }
+            return false;
         }
     }
 
